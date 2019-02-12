@@ -1,0 +1,29 @@
+version: '3.0'
+services:
+  web:
+    image: marstrueplus/magento2.2.x:apache2-php7.0.21
+    ports:
+      - "9100:80"
+    links:
+      - db
+    env_file:
+      - env
+    volumes:
+      - ./src:/var/www/html
+  db:
+    image: mysql:5.7
+    volumes:
+      - db-data:/var/lib/mysql
+    env_file:
+      - env
+    ports:
+      - "9101:3306"
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    ports:
+      - "9102:80"
+    links:
+      - db
+volumes:
+  db-data:
+  src:
