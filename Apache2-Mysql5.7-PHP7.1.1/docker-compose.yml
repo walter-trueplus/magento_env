@@ -2,6 +2,7 @@ version: "3.0"
 services:
   web:
     image: marstrueplus/m2_apache2-php7.1.1:v1
+    container_name: magento_web
     ports:
     - "9100:80"
     links:
@@ -16,6 +17,7 @@ services:
       retries: 5
   db:
     image: mysql:5.7
+    container_name: magento_db
     volumes:
     - db-data:/var/lib/mysql
     env_file:
@@ -28,6 +30,7 @@ services:
       retries: 10
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
+    container_name: magento_phpmyadmin
     ports:
     - "9102:80"
     links:
